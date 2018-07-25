@@ -1,0 +1,32 @@
+{
+    "ImageSaveServiceConfig": {
+		"IsOpen": true,
+		"ConfigType": 1,
+		"ConfigInfo": {
+			"Host": "192.168.2.18:8502",
+			"TimeoutSecond": 3,
+			"ConnectNumber": 5
+		}
+	},
+    "thor" : "http://192.168.2.18:9876",
+    "event_broke" : "192.168.2.18:9092",
+    "capture_broke" : "192.168.2.18:9092",
+    "event_partition" : 0,
+    "capture_partition" : 0,
+    "event_offset" : -1,
+    "capture_offset" : -1,
+    "face_event_topic" : "warned-push",
+    "face_captured_topic" : "devo-topic",
+    "face_white_topic":"white-push",
+    "http_port" : ":8082",
+    "sender_topic" : "facedeplin",
+    "sender_broke" : "192.168.2.18:9092",
+    "sender_partition" : 0,
+    "sender_offset" : -1,
+    "sender_maxretry" : 10,
+    "threshold" : 0.85,
+    "db_engine": "postgres",
+    "db_conn": "user=postgres password=123456 host=192.168.2.18 port=5432 dbname=deepface_v5 sslmode=disable",
+    "loki":"http://192.168.2.18:3000"
+}
+

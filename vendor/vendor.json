@@ -1,0 +1,25 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "Pc2ORQp+VY3Un/dkh4QwLC7R6lE=",
+			"path": "github.com/BurntSushi/toml",
+			"revision": "a368813c5e648fee92e5f6c30e3944ff9d5e8895",
+			"revisionTime": "2017-06-26T11:06:00Z"
+		},
+		{
+			"checksumSHA1": "DriMqHJDIx3WqJIEhMPrG23pE4Q=",
+			"path": "github.com/caarlos0/env",
+			"revision": "bc122c26dc2d72f6904a9e0cb940ca508660067c",
+			"revisionTime": "2018-07-02T19:56:40Z"
+		},
+		{
+			"checksumSHA1": "lAYp7Wop00Q6XStmjhTAZKYpVQo=",
+			"path": "github.com/kataras/iris",
+			"revision": "2a08a0f1f7162b9e662d5ffdc28bc27376259453",
+			"revisionTime": "2018-07-25T03:17:21Z"
+		}
+	],
+	"rootPath": "github.com/hela"
+}
