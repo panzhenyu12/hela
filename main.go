@@ -1,6 +1,9 @@
 package main
 
-import "github.com/kataras/iris"
+import (
+	"github.com/hela/config"
+	"github.com/kataras/iris"
+)
 
 func main() {
 	app := iris.Default()
@@ -11,5 +14,5 @@ func main() {
 	})
 
 	// Listen and serve on http://localhost:8080.
-	app.Run(iris.Addr(":8080"))
+	app.Run(iris.Addr(config.GetConfig().HTTP_PORT))
 }

@@ -1,8 +1,13 @@
 package config
 
 import (
+	"encoding/json"
+	"flag"
+	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
+	"sync"
 
 	"github.com/caarlos0/env"
 )
@@ -55,7 +60,55 @@ type FaceDeep struct {
 	LOKI_API                string  `json:"loki" env:"LOKI_API" envDefault:" "`
 }
 
-func GetConfig() FaceDeep {
+var (
+	HelaConfig *FaceDeep
+	once       sync.Once
+)
+
+func GetConfig() *FaceDeep {
+	if HelaConfig != nil {
+		return HelaConfig
+	}
+	once.Do(func() {
+		HelaConfig = parseConfig()
+	})
+	return HelaConfig
+}
+
+func parseConfig() *FaceDeep {
+	port := flag.String("port", "", "http listen port")
+	config_path := flag.String("config", "config.json", "path to config file")
+
+	flag.Parse()
+
+	var _config FaceDeep
+
+	if _, err := os.Stat(*config_path); os.IsNotExist(err) {
+		_config = GetDefConfig()
+	} else {
+		fi, err := os.Open(*config_path)
+		if err != nil {
+			log.Fatal("Error")
+			log.Fatal(err.Error())
+			panic(err)
+		}
+		fd, err := ioutil.ReadAll(fi)
+		defer fi.Close()
+		if err := json.Unmarshal(fd, &_config); err != nil {
+			log.Printf("JSON Error")
+			log.Fatal(err.Error())
+			panic("Configure Failed Error")
+			return nil
+		}
+	}
+
+	if *port != "" {
+		_config.HTTP_PORT = fmt.Sprintf(":%s", port)
+	}
+	log.Printf("Will Start At Port %s\n", _config.HTTP_PORT)
+	return &_config
+}
+func GetDefConfig() FaceDeep {
 	f := FaceDeep{}
 	err := env.Parse(&f)
 	if err != nil {
